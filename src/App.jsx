@@ -182,15 +182,22 @@ function App() {
           <a href="#ho-tro">Liên hệ</a>
         </nav>
         <div className="shop-actions">
-          <label className="shop-search">
+          <form
+            className="shop-search"
+            onSubmit={(event) => {
+              event.preventDefault();
+              searchProducts(query);
+              event.currentTarget.querySelector("input")?.blur();
+            }}
+          >
             <input
               value={query}
               onChange={(event) => searchProducts(event.target.value)}
               placeholder="Tìm kiếm sản phẩm..."
               aria-label="Tìm kiếm sản phẩm"
             />
-            <span className="shop-search-toggle"><Icon name="search" size={16} /></span>
-          </label>
+            <button type="submit" className="shop-search-toggle" aria-label="Tìm kiếm"><Icon name="search" size={16} /></button>
+          </form>
           <button className="header-icon" aria-label="Tài khoản" onClick={() => showNotice("Chào mừng bạn đến với MMTT!")}><Icon name="user" /></button>
           <button className="header-icon cart-button" aria-label={`Giỏ hàng, ${cartCount} sản phẩm`} onClick={() => showNotice(cartCount ? `Giỏ hàng của bạn có ${cartCount} sản phẩm.` : "Giỏ hàng của bạn đang trống.")}><Icon name="cart" /><span>{cartCount}</span></button>
         </div>
