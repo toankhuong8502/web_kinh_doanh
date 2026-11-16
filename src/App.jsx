@@ -93,7 +93,6 @@ function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [cartCount, setCartCount] = useState(0);
   const [notice, setNotice] = useState("");
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("M");
@@ -183,15 +182,14 @@ function App() {
           <a href="#ho-tro">Liên hệ</a>
         </nav>
         <div className="shop-actions">
-          <label className={`shop-search ${mobileSearchOpen ? "search-open" : ""}`}>
+          <label className="shop-search">
             <input
               value={query}
               onChange={(event) => searchProducts(event.target.value)}
-              onKeyDown={(event) => { if (event.key === "Escape") setMobileSearchOpen(false); }}
               placeholder="Tìm kiếm sản phẩm..."
               aria-label="Tìm kiếm sản phẩm"
             />
-            <button type="button" className="shop-search-toggle" aria-label={mobileSearchOpen ? "Đóng tìm kiếm" : "Mở tìm kiếm"} onClick={() => setMobileSearchOpen((open) => !open)}><Icon name="search" size={16} /></button>
+            <span className="shop-search-toggle"><Icon name="search" size={16} /></span>
           </label>
           <button className="header-icon" aria-label="Tài khoản" onClick={() => showNotice("Chào mừng bạn đến với MMTT!")}><Icon name="user" /></button>
           <button className="header-icon cart-button" aria-label={`Giỏ hàng, ${cartCount} sản phẩm`} onClick={() => showNotice(cartCount ? `Giỏ hàng của bạn có ${cartCount} sản phẩm.` : "Giỏ hàng của bạn đang trống.")}><Icon name="cart" /><span>{cartCount}</span></button>
